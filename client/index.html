@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/3.1.1/css/froala_editor.pkgd.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/3.1.1/css/plugins/image_manager.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/3.1.1/css/plugins/image.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/3.1.1/css/plugins/video.min.css">
+  <title>Document</title>
+</head>
+<body>
+  <div id="froala-editor" >
+     <p>Froala Editor is a lightweight WYSIWYG HTML Editor written in Javascript that enables rich text editing capabilities for your applications.&nbsp;<span class="emoticon deletable emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f600.svg);">&nbsp;</span>&nbsp;</p>
+
+    <p>Its complete <a href="/wysiwyg-editor/v2.0/docs" title="Documentation"><i class="fa fa-book deletable"></i> documentation</a>, specially designed <a href="#frameworks" title="Frameworks"><i class="fa fa-puzzle-piece deletable"></i> framework plugins</a> and <a href="/wysiwyg-editor/v2.0/examples" title="Examples">tons of examples</a> make it easy to integrate. We&#39;re continuously working to add in new features and take the Javascript web WYSIWYG editing capabilities beyond its current limits.</p>
+  </div>
+      
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/3.1.1/js/froala_editor.pkgd.min.js" ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/3.1.1/js/plugins/image.min.js" ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/3.1.1/js/plugins/video.min.js" ></script>
+  
+
+      <script>
+          new FroalaEditor('div#froala-editor', {
+            // Set the video upload parameter.
+            videoUploadParam: 'video',
+
+            // Set the video upload URL.
+            videoUploadURL: 'http://localhost:7000/upload/video',
+
+            // Additional upload params.
+            videoUploadParams: {id: 'my_editor'},
+
+            // Set request type.
+            videoUpload: true,
+            videoUploadMethod: 'POST',
+
+            // Set max video size to 200MB.
+            videoMaxSize: 200 * 1024 * 1024,
+
+            // Allow to upload MP4, WEBM and OGG
+            videoAllowedTypes: ['*'],
+
+            toolbarButtons: ['insertImage','insertFile',"insertVideo"],
+
+            imageUploadParam: 'image',
+
+            // Set the image upload URL.
+            imageUploadURL: 'http://localhost:7000/upload/image',
+
+            // Additional upload params.
+            imageUploadParams: {id: 'my_editor'},
+
+            // Set request type
+            imageUploadMethod: 'POST',
+
+            // Set max image size to 5MB.
+            imageMaxSize: 100 * 1024 * 1024,
+
+            // Allow to upload PNG and JPG.
+            imageAllowedTypes: ['jpeg', 'jpg', 'png'],
+            // Set the file upload parameter.
+            fileUploadParam: 'file',
+
+            // Set the file upload URL.
+            fileUploadURL: 'http://localhost:7000/upload/file',
+
+            // Additional upload params.
+            fileUploadParams: {id: 'my_editor'},
+
+            // Set request type.
+            fileUploadMethod: 'POST',
+
+            // Set max file size to 20MB.
+            fileMaxSize: 1000 * 1024 * 1024,
+
+            // Allow to upload any file.
+            fileAllowedTypes: ['*'],
+            events: {
+              'image.beforeUpload': function (images) {
+                console.log(images);
+              },
+              'file.error': function (error, response) {
+                console.log(error);
+                console.log(response);
+              },
+              'image.error': function (error, response) {
+                console.log(error);
+                console.log(response);
+              }
+            }
+          });
+  </script>
+  <style>
+  </style>
+</body>
+</html>
